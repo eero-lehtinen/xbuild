@@ -254,15 +254,19 @@ impl Config {
             .get_or_insert_with(|| "".into());
         info.ui_required_device_capabilities
             .get_or_insert_with(|| vec!["arm64".into()]);
-        let ipad_orientations = &mut info.ui_supported_interface_orientations_ipad;
-        ipad_orientations.push("UIInterfaceOrientationPortrait".into());
-        ipad_orientations.push("UIInterfaceOrientationPortraitUpsideDown".into());
-        ipad_orientations.push("UIInterfaceOrientationLandscapeLeft".into());
-        ipad_orientations.push("UIInterfaceOrientationLandscapeRight".into());
-        let iphone_orientations = &mut info.ui_supported_interface_orientations_iphone;
-        iphone_orientations.push("UIInterfaceOrientationPortrait".into());
-        iphone_orientations.push("UIInterfaceOrientationLandscapeLeft".into());
-        iphone_orientations.push("UIInterfaceOrientationLandscapeRight".into());
+        if info.ui_supported_interface_orientations_ipad.is_empty() {
+            let ipad_orientations = &mut info.ui_supported_interface_orientations_ipad;
+            ipad_orientations.push("UIInterfaceOrientationPortrait".into());
+            ipad_orientations.push("UIInterfaceOrientationPortraitUpsideDown".into());
+            ipad_orientations.push("UIInterfaceOrientationLandscapeLeft".into());
+            ipad_orientations.push("UIInterfaceOrientationLandscapeRight".into());
+        }
+        if info.ui_supported_interface_orientations_iphone.is_empty() {
+            let iphone_orientations = &mut info.ui_supported_interface_orientations_iphone;
+            iphone_orientations.push("UIInterfaceOrientationPortrait".into());
+            iphone_orientations.push("UIInterfaceOrientationLandscapeLeft".into());
+            iphone_orientations.push("UIInterfaceOrientationLandscapeRight".into());
+        }
 
         // macos
         let info = &mut self.macos.info;
