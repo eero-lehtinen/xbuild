@@ -21,7 +21,7 @@ mod info;
 pub use info::InfoPlist;
 
 const MACOS_ICON_SIZES: [u32; 6] = [16, 32, 64, 128, 256, 512];
-const IOS_ICON_SIZES: [u32; 7] = [58, 76, 80, 120, 152, 167, 1024];
+const IOS_ICON_SIZES: [u32; 1] = [1024];
 
 pub struct AppBundle {
     appdir: PathBuf,
